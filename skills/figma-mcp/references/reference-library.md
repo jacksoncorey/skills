@@ -106,7 +106,7 @@ Reference for editorial serif in a sans UI: paper-cutout illustration, page fram
 
 Nav
 
-- Keep the bar 56 to 72px tall at 1440; floating pill navs run 48 to 56px inside a taller band (Linear, Craft, Cosmos).
+- Keep the bar 56 to 72px tall at 1440; floating pill navs run 48 to 56px inside a band up to 82 (Linear, Craft, Cosmos).
 - Show two to seven items: consumer tools two to four (Amie, Cosmos, Craft), platforms five to seven (Stripe, Vercel, Framer, Linear).
 - Put "Log in" as plain text and one filled primary CTA at the far right (all eight); Stripe and Vercel add an outlined second button.
 
@@ -114,7 +114,7 @@ Hero
 
 - Set headline cap height between 1/40 and 1/19 of viewport width; the median is 1/30, about 64 to 68px (Notion, Linear, Amie).
 - Centre the hero, as six of eight do; left-align only when copy is dense or the product bleeds right (Stripe, Linear).
-- Keep the headline to one or two lines and the subhead to one to three lines (Vercel, Notion, Framer).
+- Keep the headline to one to three lines, two is the mode, and the subhead to one to three lines (Vercel, Notion, Framer).
 - Use one CTA or two, never three; the second is always quieter: outlined, tinted or grey (Stripe, Vercel, Notion, Framer).
 - Choose one button shape and keep it: full pills (Vercel, Framer, Cosmos, Craft) or rounded rectangles of 4 to 10px (Stripe, Amie, Notion).
 - Place media below the headline at full width or 68 to 71% wide (Vercel, Notion, Craft, Framer); put it right only with a left-aligned headline (Linear, Stripe).
@@ -122,7 +122,7 @@ Hero
 
 Section rhythm
 
-- Pad section tops 90 to 130px at 1440 (Notion 86, Amie 94, Cosmos 116, Framer 120, Vercel 128, Linear 130).
+- Pad section tops 86 to 130px at 1440 (Notion 86, Amie 94, Cosmos 116, Framer 120, Vercel 128, Linear 130).
 - Pick one ground for the whole page, light (Stripe, Amie, Vercel, Notion) or dark (Framer, Linear).
 - Alternate only with a single contrasting band or footer (Vercel startups band, Craft and Cosmos footers).
 - Separate sections with hairlines or grid lines rather than colour blocks (Vercel, Linear, Notion logos).

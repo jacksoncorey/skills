@@ -17,6 +17,7 @@ Run these checks after grounding and before the first write or reviewer. Each is
 | Browser | A navigate and evaluate tool the harness exposes | Without it, a website reference cannot be measured and rung 3 is unavailable |
 | Sub-agents | The Agent tool or equivalent | Without it, the loop degrades to a self-review and the report must say so |
 | Memory | The auto-memory path, if the harness has one | Without it, rung 5 is a codebase search only |
+| References | The Mobbin search tools, if the harness exposes them | Without them, the descriptions in `reference-library.md` and the product's own site stand in |
 
 On the desktop server the font, library and image rows read `n/a (desktop, read-only session)`; library reach is then judged from `boundVariables` on existing screens through the browser's Inspect panel and marked not verified.
 

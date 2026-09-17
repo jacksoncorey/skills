@@ -80,19 +80,13 @@ The build sequence is `figma-generate-design` Steps 3 to 5 with `figma-use` Sect
 
 ## Design principles that survive the canvas
 
-The load-bearing subset of [design-principles.md](references/design-principles.md), which restates Jakub Krehel's `better-*` rules for the canvas with attribution and ends by splitting the checks between the two reviewers. The fidelity reviewer runs those; the vision reviewer takes the rules that need judgment.
+[design-craft.md](references/design-craft.md) is the operational canon: every value, in build order, with a 17-row self-check. [design-principles.md](references/design-principles.md) restates Jakub Krehel's `better-*` rules for the canvas with attribution and splits its checks between the two reviewers. The builder answers the 17-row self-check before a section is done; the fidelity reviewer runs the Measurable checks and the five scripts, citing craft defaults only via the brief. Five rules hold even when neither file is open:
 
-- **Group with space, not lines.** The gap between groups is at least 2x the gap within one: 8 inside, 16 or more between. A separator line is the last resort and stays hairline and low contrast.
-- **Order by importance, one primary action per view.** The most important content sits near the top and the leading edge. One filled action per frame, peers neutral, secondaries behind a menu past three.
-- **Controls look like controls.** A background shape, a border, an underline, or a consistent placement zone; a static badge never borrows the button shape.
-- **Hit areas and breathing room.** 44 by 44 on touch, 40 on desktop, 24 the hard floor; 12 between bordered controls, 24 around borderless ones; two targets never overlap.
-- **Concentric radius.** Outer radius equals inner radius plus the padding between them; above 24 of padding the layers are separate surfaces.
-- **Shadows for elevation, borders for structure, outlines on images.** A divider stays a border. A depth-only border becomes three DROP_SHADOW layers (x/y/blur/spread): 0/0/0/1 at 6%, 0/1/2/-1 at 6%, 0/2/4/0 at 4%, or one white ring at 8% in dark. Every photo gets a 1 px inside stroke at 10 percent pure black, pure white in dark.
-- **Type by role, never a one-off.** Sizes come from a role-named scale: body 16, UI text 14, captions 13, rarely below 12, weight 400 or heavier below 18. Display takes 110% leading, title 120, heading 130, body 150 to 160, and 140 at minimum on three or more lines. Tracking is -2% on display and +5% on small uppercase labels. Measure 60 to 75 characters, tabular numbers on anything that changes.
-- **Contrast is measured, not eyeballed.** Foreground against the background it actually sits on: 4.5:1 under 24 px (18.5 bold), 3:1 above and for UI components. Fix by lightness first, then remeasure, and report before repainting.
-- **Tokens in their role.** A frame binds semantic variables only, never a primitive directly. One colour has one meaning, and the accent hue appears only on interactive or selected nodes.
-- **Motion has exact values.** Enter y 12 to 0 over 300 ms, exit y -12 over 150 ms, both ease-out, stagger 100 ms only on infrequent entrances. Press scales to 0.96. High-frequency feedback takes 150 ms or less, and every animated state also has a static cue.
-- **Verb-first buttons, destination-describing links, one vocabulary per flow, sentence case,** errors that say how to fix beside the field that failed.
+- **Group with space, not lines.** Outer gap at least 2x the inner: 8 inside, 16 or more between. A separator is the last resort.
+- **One filled action per view.** Peers neutral, the accent only on interactive or selected nodes, secondaries behind a menu past three. A nav CTA carrying the hero's label is the same action.
+- **Type by role, leading explicit.** Sizes from a role-named scale, body 16, nothing below 12; display 110, title 120, heading 130, body 150 to 160; never `AUTO`; bind the style last.
+- **Tokens in their role.** A frame binds semantic variables only, never a primitive, never a hex where a token exists.
+- **Contrast and hit areas are measured.** 4.5:1 under 24 px (18.5 bold), 3:1 above and for UI; targets 44 touch, 40 desktop, never under 24, never overlapping.
 
 ## Review with eyes that did not do the work
 
@@ -117,7 +111,7 @@ Cadence, stop rule, budget and harness mechanisms are in [feedback-loop.md](refe
 | Font family loaded without error but wrong for the product | Assert against `getStyledTextSegments` and the brief |
 | Competitor's token pages read into the brief | A cross-brand reference's foundations are listed, never read |
 | Brand font unavailable in Figma, Inter loaded silently | Nearest family, recorded as an accepted exception |
-| Sixty write calls and six strong-model reviewers for one page | Preflight card first; cheap models for listings, dumps, captures and the coverage diff; one screenshot per finished section |
+| Fifty-six write calls and six strong-model reviewers for one page | Preflight card first; cheap models for listings, dumps, captures and the coverage diff; one screenshot per finished section |
 | Built for an hour before the user saw the plan | Preflight card and brief, then ask, unless the run was pre-authorised |
 | Seven sections built before the first one was looked at | Screenshot section N by id before starting N+1 |
 | A section that answers none of the craft self-check rows | Run the 17 rows in design-craft.md from a dump before calling it done |
