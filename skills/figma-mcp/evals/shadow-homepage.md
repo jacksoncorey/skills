@@ -7,11 +7,11 @@ A test of the `figma-mcp` skill on a real task with three real inputs. It exerci
 | Input | Value | Fill in |
 | --- | --- | --- |
 | Current site | https://shadow.co (a Framer site, so there is no codebase to read; the browser probes are the source) | ready |
-| Half-baked design | A Figma node URL in the Shadow-Website file `RSG7AXjCTu8e4i0fkGIwn5`, or wherever the new draft lives | `<HALF_BAKED_FIGMA_URL>` |
-| Cross-brand reference | A Figma node URL or a public site from a different brand | `<REFERENCE_FIGMA_OR_SITE_URL>` |
+| Half-baked design | Node `10467:103080` in the Shadow-Website file `RSG7AXjCTu8e4i0fkGIwn5` | filled |
+| Cross-brand reference | https://www.moving.parts, a public site from a different brand | filled |
 | Known trap | The Shadow Launch product library `HonTXfmNxjH1I7AMXzYK4t` is in this machine's auto-memory with a full token set. The marketing site does not necessarily share it. A correct run surfaces it and asks; a wrong run binds to it silently or ignores it | in place |
 
-Replace the two placeholders in `evals.json` (eval 1) before running.
+Both inputs are filled in `evals.json` (eval 1).
 
 ## How to run it
 

@@ -19,7 +19,7 @@ Land on the highest rung that exists, and record the rung. A reference from a di
 
 Run these before deciding nothing exists. Each takes seconds and any one of them can change every downstream value. For design to output the codebase items always run, whatever rung the source side landed on, because they fill the target column. In the Figma file, keep `figma-generate-design`'s order: Code Connect files, then existing screens (the instances script in node-inspection.md), then `get_libraries` and `search_design_system`. Grounding is that skill's Step 2; do not repeat it, and carry the keys into the brief's Components table.
 
-- Auto-memory and project memory: search for `figma.com`, the product name, `design system`, `tokens`, `DESIGN.md`.
+- Auto-memory and project memory: search for `figma.com`, the product name, `design system`, `tokens`, `DESIGN.md`. In Claude Code the index is `~/.claude/projects/<project-slug>/memory/MEMORY.md`; a sub-agent gets the path from whoever spawned it.
 - The project's instruction files: `CLAUDE.md`, `AGENTS.md`, `.cursorrules`, a `docs/design` folder.
 - The codebase: `DESIGN.md`, `tokens.*`, `theme.*`, `tailwind.config.*`, `globals.css` custom properties, and Code Connect files (`*.figma.ts`, `*.figma.tsx`, or `FigmaConnect` in Swift and Kotlin), which carry Figma URLs. Code Connect snippets also arrive inside `get_design_context` on either server.
 - The Figma file itself: `get_libraries` for subscribed and available libraries, paging with `offset` until the next offset is null. Then a page list for anything named foundations, tokens, components or system.
