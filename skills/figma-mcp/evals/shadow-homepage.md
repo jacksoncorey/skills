@@ -40,7 +40,7 @@ The assertions in `evals.json` are binary and evidence-based. Grade each from th
 | Type ramp on canvas | Subtree dump: display text `lineHeight` explicit near 110 percent with negative tracking; body 150 to 160 percent |
 | Reviewers spawned | Sub-agent calls with the brief and ledger paths; findings tables; fixes after them |
 | Report structure | The six items from the skill's Reporting section, present in order |
-| Section screenshots at 2x, no shimmer | `get_screenshot` calls with `maxDimension` at 2048 or more per section; the placeholder script returns empty |
+| Section screenshots per section, no shimmer | `get_screenshot` per section by id, taken before the next section was built, with `maxDimension` at the node's native long edge (or a 2x browser capture); the placeholder script returns empty |
 
 Score is the count of assertions passed out of eleven, per arm. The skill is doing its job when the with-skill arm passes at least nine and the without-skill arm passes fewer than five, and when a designer looking at the two frames prefers the with-skill one without being told which is which.
 
@@ -52,6 +52,10 @@ Beyond the score, open both frames side by side and ask a designer, or the visio
 2. Which one has layers you could hand to a designer?
 3. Which one reads as Shadow, and which one reads as the reference brand with Shadow's logo on it?
 4. Which one used Shadow's real typeface and spacing rhythm from the live site?
+
+## Iteration 1 result (2026-09-17)
+
+With skill 10 of 11, without skill 1 of 11. Full table in the workspace's `iteration-1/benchmark.md`. The one with-skill miss was screenshots: native size is right, but the sections were captured in a batch after building instead of one at a time.
 
 ## What this eval does not test
 

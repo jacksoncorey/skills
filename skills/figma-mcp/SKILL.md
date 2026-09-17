@@ -36,7 +36,7 @@ Establish the reference frame in this priority order and record which rung you l
 
 For design to output the codebase items of rung 5 always run, because they fill the target column.
 
-**Never adopt a found system without checking.** Rung 5 is a search result, not a decision. The adopt rule and the one-line question are in [grounding.md](references/grounding.md). The short form: a found system is used unasked only when it is named for the product the task is for. Keep doing everything that does not depend on the answer.
+**Never adopt a found system without checking.** Rung 5 is a search result, not a decision. Name every candidate the search turned up in the brief, including the ones you did not adopt and why they lost, so the user can overrule the choice. The adopt rule and the one-line question are in [grounding.md](references/grounding.md). The short form: a found system is used unasked only when it is named for the product the task is for. Keep doing everything that does not depend on the answer.
 
 **Write the brief.** Grounding ends with a design brief on disk: an aesthetic paragraph and atomic tables, each row citing where it was seen or saying `unknown`. For design to output the target token sits beside each source value. Template in [grounding.md](references/grounding.md). The brief and the coverage ledger live in the session scratchpad, or a dated scratch folder if there is none, never inside a code repo. Every reviewer gets their absolute paths.
 

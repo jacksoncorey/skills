@@ -18,7 +18,7 @@
         "Type ramp on the canvas: display text has explicit line-height (not AUTO) near 110% and negative tracking; body text has line-height 150–160% and a measure ≤ 75 characters",
         "At least one coverage-auditor and one vision-reviewer sub-agent were spawned with the brief and ledger paths, and their findings tables appear in the transcript with fixes applied",
         "Final report contains: grounding rung and what the user confirmed, pages read vs present, nodes inspected vs in scope, resolved findings grouped by reviewer, accepted exceptions, and a not-verified list",
-        "Screenshots of each built section were taken by node id at maxDimension ≥ 2048 (or 2x) before moving on, and no placeholder shimmer remains on the final frame"
+        "Screenshots of each built section were taken by node id, one section at a time before moving on, at the node's native long edge or at 2x from a browser (the remote tool never upscales), and no placeholder shimmer remains on the final frame"
       ]
     },
     {
