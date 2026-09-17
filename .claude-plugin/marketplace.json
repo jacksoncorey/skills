@@ -1,0 +1,14 @@
+{
+  "name": "jacksoncorey",
+  "description": "Agent skills by Jackson Corey: Figma MCP, pixel parity, handoffs and verification.",
+  "owner": {
+    "name": "Jackson Corey"
+  },
+  "plugins": [
+    {
+      "name": "jacksoncorey",
+      "source": "./",
+      "description": "Agent skills for working with design tools and shipping interface work with proof: Figma MCP, pixel parity, handoffs and verification."
+    }
+  ]
+}

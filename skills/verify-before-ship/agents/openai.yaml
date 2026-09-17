@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verify Before Ship"
+  short_description: "Adversarial verification pass before a deliverable ships"

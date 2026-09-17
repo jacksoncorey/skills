@@ -1,0 +1,3 @@
+interface:
+  display_name: "Handoff"
+  short_description: "Paste-ready prompt to resume work in a fresh session"

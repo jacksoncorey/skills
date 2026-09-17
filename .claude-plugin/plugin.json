@@ -1,0 +1,10 @@
+{
+  "name": "jacksoncorey",
+  "description": "Agent skills for working with design tools and shipping interface work with proof: Figma MCP, pixel parity, handoffs and verification.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jackson Corey"
+  },
+  "repository": "https://github.com/jacksoncorey/skills",
+  "license": "MIT"
+}

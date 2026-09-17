@@ -1,0 +1,53 @@
+{
+  "skill_name": "figma-mcp",
+  "evals": [
+    {
+      "id": 1,
+      "name": "shadow-homepage-input-to-design",
+      "prompt": "I want a new homepage for our public website, shadow.co, designed in Figma. Three inputs: (1) the current live site at https://shadow.co; (2) a new, half-baked homepage design in our Figma file: <HALF_BAKED_FIGMA_URL>; (3) a design reference from a different brand whose feel I like: <REFERENCE_FIGMA_OR_SITE_URL>. Use the half-baked design as the starting structure, borrow the reference's feel without copying its brand, and keep it recognisably Shadow. Build it as a new desktop frame in the same Figma file, on a proper grid, with layers named so a designer can pick it up. Tell me what you read, what you decided, and what you couldn't verify.",
+      "expected_output": "A new named desktop frame in the Figma file, built section by section with a 12-column grid on the wrapper, layers named with product vocabulary, type and spacing taken from a written brief that cites its sources, Shadow's tokens/fonts used where they exist, a coverage ledger of every page and node read, findings from at least one round of coverage/fidelity/vision review, and a final report listing pages read vs present, accepted exceptions, and unverified items. The agent should find the Shadow Launch library (HonTXfmNxjH1I7AMXzYK4t) in memory and ASK before adopting it, since the marketing site may not share the product's system.",
+      "files": [],
+      "assertions": [
+        "Grounding brief written to disk before any use_figma mutation, with both an aesthetic paragraph and atomic tables (color, type ramp, spacing, radii, grid, components), each atomic row citing where it was seen",
+        "The live site shadow.co was opened in a browser and at least the type scale, spacing and radius probes were run and their results recorded in the brief",
+        "All pages of the half-baked Figma file were listed and each page was either read or explicitly skipped with a reason in the report",
+        "The reference brand's design was used for layout and mood only: no token, color or font from the reference appears in the built frame unless the user approved it",
+        "A design system found via memory or file search (e.g. the Shadow Launch library) was surfaced to the user with a one-line question before being adopted; the agent did not silently bind to it, and did not stall waiting on the answer",
+        "The wrapper frame has a 12-column layout grid and the on-grid measurement script was run with results recorded",
+        "No node under the wrapper matches the default-name pattern (Frame N, Rectangle N, Text N); the naming audit script was run",
+        "Type ramp on the canvas: display text has explicit line-height (not AUTO) near 110% and negative tracking; body text has line-height 150–160% and a measure ≤ 75 characters",
+        "At least one coverage-auditor and one vision-reviewer sub-agent were spawned with the brief and ledger paths, and their findings tables appear in the transcript with fixes applied",
+        "Final report contains: grounding rung and what the user confirmed, pages read vs present, nodes inspected vs in scope, resolved findings grouped by reviewer, accepted exceptions, and a not-verified list",
+        "Screenshots of each built section were taken by node id at maxDimension ≥ 2048 (or 2x) before moving on, and no placeholder shimmer remains on the final frame"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "shadow-homepage-design-to-code",
+      "prompt": "Take the current Home frame in our Shadow-Website Figma file (https://www.figma.com/design/RSG7AXjCTu8e4i0fkGIwn5/Shadow-Website?node-id=10432-76571) and rebuild the hero and the first feature row as a static HTML/CSS page in a fresh folder. It needs to match the frame exactly, including fonts, spacing and the hidden hover states if there are any.",
+      "expected_output": "A static page whose hero and first feature row reproduce the frame's values, built from per-focus-unit get_design_context reads (not one page-level call), hidden layers discovered and implemented as hover states, fonts asserted against the frame, and a fidelity review with a findings table. The report names the pages present in the file and which were read.",
+      "files": [],
+      "assertions": [
+        "get_design_context was called per focus unit (hero, feature row, and their children as needed), not once on the page frame",
+        "A read-only use_figma dump or hidden-layers script was run and any hidden state layers were listed and either implemented or explicitly excluded with a reason",
+        "get_variable_defs was called and token names appear in the CSS as custom properties rather than only raw hex",
+        "Font families in the built page match the frame's families as read from getStyledTextSegments, and the report states the assertion result",
+        "A fidelity-reviewer sub-agent compared built vs Figma at 2x and returned a findings table with source and observed values",
+        "The final report lists pages present vs read and a coverage ledger of node ids inspected"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "figma-audit-against-live-site",
+      "prompt": "Does https://shadow.co still match our Home frame in Figma (https://www.figma.com/design/RSG7AXjCTu8e4i0fkGIwn5/Shadow-Website?node-id=10432-76571)? Tell me every difference that matters.",
+      "expected_output": "An audit table of differences with severity, location, what the frame says, what the site shows, grounded in per-unit reads of the frame and measured values from the live site, not a screenshot-level impression. No verdict on regions that were not inspected.",
+      "files": [],
+      "assertions": [
+        "Live site values were measured with page-context probes (type scale, spacing, radii, fonts), not eyeballed from a screenshot",
+        "Figma values came from get_design_context per focus unit plus get_variable_defs, with node ids cited per finding",
+        "The findings table has Severity / Location / Source says / Output shows / Fix columns and each row carries both values",
+        "The report states which sections were inspected and which were not, and gives no verdict on uninspected ones"
+      ]
+    }
+  ]
+}
