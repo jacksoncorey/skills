@@ -34,6 +34,8 @@ Establish the reference frame in this priority order and record which rung you l
 5. Something found by searching: auto-memory and project memory, `CLAUDE.md`, `DESIGN.md`, token and theme files, Code Connect files, figma.com URLs in project docs, every page of `get_libraries`.
 6. Nothing. Say so, and design from the principles below.
 
+At any rung, [reference-library.md](references/reference-library.md) gives real marketing pages to look at, cited by section with measured observations and the patterns that recur across them. Open the two it names for the brief's cue when the brief names a mood, when the product has no site, or when a section has no precedent in the sources. References are for looking, never for copying, and their tokens never cross over. When the Mobbin tools are present, search them by brand and section; when absent, the descriptions stand in.
+
 **Never adopt a found system without checking.** Rung 5 is a search result, not a decision. Name every candidate the search turned up in the brief, including the ones you did not adopt and why they lost, so the user can overrule the choice. The adopt rule and the one-line question are in [grounding.md](references/grounding.md). The short form: a found system is used unasked only when it is named for the product the task is for.
 
 **Write the brief.** Grounding ends with a design brief on disk: an aesthetic paragraph and atomic tables, each row citing where it was seen or saying `unknown`. For design to output the target token sits beside each source value. Template in [grounding.md](references/grounding.md). The brief also lists every candidate system the search found and did not adopt, with the reason. Location rule and template in [grounding.md](references/grounding.md); every reviewer gets the absolute paths.
@@ -68,6 +70,8 @@ The build sequence is `figma-generate-design` Steps 3 to 5 with `figma-use` Sect
 
 **Name everything with the vocabulary of the product.** Never `Frame 427`. Rename in the call that creates the node. Group the work in a Figma section named for the flow.
 
+**Craft canon.** Before the wrapper, load [design-craft.md](references/design-craft.md): directive values in build order, a marketing-page defaults block, and a 17-row self-check answered from a screenshot or a dump before a section is done. The product's own system and the file's conventions outrank it; it fills gaps.
+
 **Hierarchy from the ramp.** Sizes, weights, leading and tracking come from the brief and are set explicitly, never left to `AUTO`. The canvas values and the kerning rule are in [designing-in-figma.md](references/designing-in-figma.md). A brand family Figma cannot load becomes the nearest available family, recorded as an accepted exception, never Inter unasked.
 
 **No library, no excuse.** When the target file has no library, `figma-generate-design`'s published-system prerequisite is overridden. Create local variables and then text styles from the brief's atomic tables before the wrapper, following the variable and style steps of `figma-generate-library`. Bind to those.
@@ -84,7 +88,7 @@ The load-bearing subset of [design-principles.md](references/design-principles.m
 - **Hit areas and breathing room.** 44 by 44 on touch, 40 on desktop, 24 the hard floor; 12 between bordered controls, 24 around borderless ones; two targets never overlap.
 - **Concentric radius.** Outer radius equals inner radius plus the padding between them; above 24 of padding the layers are separate surfaces.
 - **Shadows for elevation, borders for structure, outlines on images.** A divider stays a border. A depth-only border becomes three DROP_SHADOW layers (x/y/blur/spread): 0/0/0/1 at 6%, 0/1/2/-1 at 6%, 0/2/4/0 at 4%, or one white ring at 8% in dark. Every photo gets a 1 px inside stroke at 10 percent pure black, pure white in dark.
-- **Type by role, never a one-off.** Sizes come from a role-named scale: body 16, UI text 14, captions 13, rarely below 12, weight 400 or heavier below 18. Display and title take 110% leading, headings 110 to 120, body 150 to 160, and 140 at minimum on three or more lines. Tracking is -2% on display and +5% on small uppercase labels. Measure 60 to 75 characters, tabular numbers on anything that changes.
+- **Type by role, never a one-off.** Sizes come from a role-named scale: body 16, UI text 14, captions 13, rarely below 12, weight 400 or heavier below 18. Display takes 110% leading, title 120, heading 130, body 150 to 160, and 140 at minimum on three or more lines. Tracking is -2% on display and +5% on small uppercase labels. Measure 60 to 75 characters, tabular numbers on anything that changes.
 - **Contrast is measured, not eyeballed.** Foreground against the background it actually sits on: 4.5:1 under 24 px (18.5 bold), 3:1 above and for UI components. Fix by lightness first, then remeasure, and report before repainting.
 - **Tokens in their role.** A frame binds semantic variables only, never a primitive directly. One colour has one meaning, and the accent hue appears only on interactive or selected nodes.
 - **Motion has exact values.** Enter y 12 to 0 over 300 ms, exit y -12 over 150 ms, both ease-out, stagger 100 ms only on infrequent entrances. Press scales to 0.96. High-frequency feedback takes 150 ms or less, and every animated state also has a static cue.
@@ -116,6 +120,7 @@ Cadence, stop rule, budget and harness mechanisms are in [feedback-loop.md](refe
 | Sixty write calls and six strong-model reviewers for one page | Preflight card first; cheap models for listings, dumps, captures and the coverage diff; one screenshot per finished section |
 | Built for an hour before the user saw the plan | Preflight card and brief, then ask, unless the run was pre-authorised |
 | Seven sections built before the first one was looked at | Screenshot section N by id before starting N+1 |
+| A section that answers none of the craft self-check rows | Run the 17 rows in design-craft.md from a dump before calling it done |
 | Report says a style is bound; the final dump says it is not | Read back after the last write; bind text styles last |
 | A "trusted by" line or a feature claim no source contains | Copy from the sources or a named placeholder; the vision reviewer checks provenance |
 

@@ -34,11 +34,11 @@ The rules below are extracted from Jakub Krehel's `better-*` skills (`better-lay
 
 **No fake weights.** Load the faces the design uses; a synthesized weight or style distorts the real face. On the canvas, `fontName.style` is a style the family ships. A weight is never faked with a stroke on text, nor an italic with a skew (this skill's canvas reading).
 
-**A type scale with semantic names.** A small set of sizes, deviated from as little as possible, named by use on a team, not by size: `text/body-sm`, not `text/14`. A starting role scale (this skill's rule, not the source's), as size, leading and weight: display 36, 1.1, 600. Title 24, 1.1, 600. heading 18, 1.2, 600. Body 16, 1.5, 400. Caption 13, 1.4, 400. Emphasis within a role is one weight step up (400 to 500), never a size change. On the canvas: text styles named by role, `fontSize` only from the scale.
+**A type scale with semantic names.** A small set of sizes, deviated from as little as possible, named by use on a team, not by size: `text/body-sm`, not `text/14`. A starting role scale (from the source's spacing table), as size, leading and weight: display 36, 1.1, 600. Title 24, 1.2, 600. Heading 18, 1.3, 600. Body 16, 1.5, 400. Caption 13, 1.4, 400. Emphasis within a role is one weight step up (400 to 500), never a size change. On the canvas: text styles named by role, `fontSize` only from the scale.
 
 **Heading sizes descend with level.** Each heading level maps to a descending step, so a child heading never renders more prominently than its parent. Adjacent levels may share a size at the small end if weight or spacing keeps them distinct. A heading is never smaller than body text unless it is an overline label.
 
-**Line-height by role.** Display and title around 1.1, headings 1.1 to 1.2, body 1.5 to 1.6, and anything that wraps to three or more lines at least 1.4 even in a tight row. On the canvas: `lineHeight` `{ unit: "PERCENT", value: 110 }` on headings, 150 to 160 on body, 140 minimum on text that renders three lines; PERCENT is the unitless analogue. This skill's rule: never leave `AUTO` on display text, because auto leading is the font's own metric and differs per family.
+**Line-height by role.** Display around 1.1, title 1.2, heading 1.3, body 1.5 to 1.6, and anything that wraps to three or more lines at least 1.4 even in a tight row. On the canvas: `lineHeight` `{ unit: "PERCENT", value: 110 }` on headings, 150 to 160 on body, 140 minimum on text that renders three lines; PERCENT is the unitless analogue. This skill's rule: never leave `AUTO` on display text, because auto leading is the font's own metric and differs per family.
 
 **Letter-spacing by size.** Large headings slightly negative, about -0.02 em; small uppercase labels slightly positive, about +0.05 em; body copy neither. On the canvas: `letterSpacing` `{ unit: "PERCENT", value: -2 }` on display, `+5` on small uppercase labels, `0` on body.
 
@@ -162,7 +162,7 @@ Each row is a number or a property a `use_figma` read-only script or a computed-
 | Control clearance | 12 or more between bordered controls, 24 or more around borderless ones, 24 or more between groups | `itemSpacing` on control rows |
 | Spacing step | Every padding and gap is a multiple of the project step, 16 by default | `paddingTop/Right/Bottom/Left`, `itemSpacing` |
 | On-grid | Every content edge within 1 px of a column edge | `layoutGrids`, `absoluteBoundingBox` |
-| Leading by role | Display and title 110%, headings 110 to 120%, body 150 to 160%, three-plus-line text 140% or more, no `AUTO` on display | `lineHeight.unit`, `lineHeight.value`, `height` divided by the line height for the line count |
+| Leading by role | Display 110%, title 120%, heading 130%, body 150 to 160%, three-plus-line text 140% or more, no `AUTO` on display | `lineHeight.unit`, `lineHeight.value`, `height` divided by the line height for the line count |
 | Tracking by size | Display -2%, small uppercase +5%, body 0 | `letterSpacing`, `textCase`, `fontSize` |
 | Scale membership | Every `fontSize` is a scale step and every text node binds a role style | `fontSize`, `textStyleId` |
 | Weight floors | 400 or heavier below 18 px; under 300 only at 28 px and above; no stroke on text | `fontWeight`, `fontSize`, `strokes` on TEXT |

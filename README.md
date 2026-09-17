@@ -6,7 +6,7 @@ Agent skills for working with design tools and shipping interface work with proo
 
 ## Skills
 
-- [**figma-mcp**](skills/figma-mcp/SKILL.md): Gets the best possible result out of the Figma MCP in either direction. Reads a design thoroughly enough to reproduce it faithfully, or designs in Figma the way a designer would, with a grounding brief, a coverage ledger and a sub-agent review loop.
+- [**figma-mcp**](skills/figma-mcp/SKILL.md): Gets the best possible result out of the Figma MCP in either direction. Reads a design thoroughly enough to reproduce it faithfully, or designs in Figma the way a designer would, with a grounding brief, a coverage ledger, a preflight gate, a design craft canon with a self-check, a reference library of measured marketing pages, and a sub-agent review loop.
 - [**pixel-perfect**](skills/pixel-perfect/SKILL.md): Drives a UI implementation to verified parity with a Figma frame. Parses exact values before coding, diffs screenshots after, reads the heatmap not the percentage, and ships an evidence page.
 - [**front-end-qa**](skills/front-end-qa/SKILL.md): An independent, adversarial final check on a front-end change before it ships, run by a context that did not build it.
 - [**verify-before-ship**](skills/verify-before-ship/SKILL.md): A pre-ship verification pass for anything high-stakes. Finds the load-bearing claims, re-derives every number, bins claims as verified, inferred or assumed, and returns an answer-first verdict.
