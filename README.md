@@ -13,6 +13,17 @@ Agent skills for working with design tools and shipping interface work with proo
 - [**handoff**](skills/handoff/SKILL.md): One paste-ready prompt that moves a long session into a fresh one with zero information loss.
 - [**delegate**](skills/delegate/SKILL.md): One scannable brief that hands work to a human teammate with everything they need and nothing they have to ask for.
 
+## How figma-mcp was tested
+
+Same prompt, same Figma file, same tools, one arm with the skill and one without, graded by fresh sub-agents against eleven evidence-based assertions (brief before the first write, site probes recorded, every page listed, reference used for mood only, found systems surfaced, grid script run, no default names, type ramp on canvas, reviewers spawned and applied, report structure, screenshots per section).
+
+| Model | With skill | Without skill |
+| --- | --- | --- |
+| Claude Fable 5.1 | 10 / 11 | 1 / 11 |
+| Claude Opus 5 | 8 / 11 | 3 / 11 |
+
+The eval, its assertions and the runbook ship in `skills/figma-mcp/evals/`.
+
 ## Install
 
 ```bash

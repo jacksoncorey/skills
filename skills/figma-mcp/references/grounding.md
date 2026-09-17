@@ -147,6 +147,11 @@ For design-to-output the target column is the source-token to target-token map: 
 | Component | Source (library key, node id, or "to build") | Variants needed |
 | --- | --- | --- |
 
+## Candidates found and not adopted
+| Candidate | Where found | Why it lost |
+| --- | --- | --- |
+<Every system, library or token file the search turned up that this brief does not use. "None found" is a valid row. Both eval runs read a memory file naming a second library and never mentioned it; this table is where that goes.>
+
 ## What the user said, verbatim
 <Every sentence of intent from the request, quoted. The vision reviewer grades against this.>
 

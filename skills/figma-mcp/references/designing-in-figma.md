@@ -9,7 +9,7 @@ What a designer does on a canvas that an agent left to itself does not: grids, n
 | Step 1, understand the deliverable | The brief already holds the sections, the ramp and the grid. Read it instead of re-deriving |
 | Step 2, collect keys, variables, styles | Also measure the file's own grid with the subtree dump; an existing grid wins over the recipe below |
 | Step 3, wrapper frame | Put the column grid on the wrapper in the same call, and name it |
-| Step 4, each section | Name every node in the creating call; set leading and tracking from the ramp; run the check scripts below after every two or three sections (the fidelity reviewer is a separate pass) |
+| Step 4, each section | Name every node in the creating call; set leading and tracking from the ramp; screenshot the section by id and look at it before starting the next one; run the check scripts below after every two or three sections (the fidelity reviewer is a separate pass) |
 | Step 5, validate | Run all five checks, then a 2x composition screenshot read as a page |
 | Step 6, update an existing view | Read the existing grid and names first and match them; the naming and on-grid checks run only on nodes you added |
 
@@ -69,6 +69,8 @@ if (style.type === "TEXT") await figma.loadFontAsync(style.fontName);
 await title.setTextStyleIdAsync(style.id);
 return { mutatedNodeIds: [title.id] };
 ```
+
+Bind the text style last. Setting `textCase`, `fontSize`, `letterSpacing` or `lineHeight` after `setTextStyleIdAsync` detaches the style silently; the Opus eval run lost all ten mono bindings this way and reported them as bound. Read `textStyleId` back after the last write before claiming it.
 
 Library variables come from `search_design_system` and `importVariableByKeyAsync`, or from `boundVariables` on existing screens where `remote` is true. An empty local variable list never means the file has no tokens. When the target file has no library at all, create local text styles and color and spacing variables from the brief's atomic tables before the wrapper; `figma-generate-library` owns the how. Then bind to those, and the hardcoded-values check applies in full.
 

@@ -53,9 +53,14 @@ Beyond the score, open both frames side by side and ask a designer, or the visio
 3. Which one reads as Shadow, and which one reads as the reference brand with Shadow's logo on it?
 4. Which one used Shadow's real typeface and spacing rhythm from the live site?
 
-## Iteration 1 result (2026-09-17)
+## Results so far
 
-With skill 10 of 11, without skill 1 of 11. Full table in the workspace's `iteration-1/benchmark.md`. The one with-skill miss was screenshots: native size is right, but the sections were captured in a batch after building instead of one at a time.
+| Iteration | Model | With skill | Without skill | With-skill wall clock |
+| --- | --- | --- | --- | --- |
+| 1 (2026-09-17) | Claude Fable 5.1 | 10 / 11 | 1 / 11 | about 90 min |
+| 2 (2026-09-17) | Claude Opus 5 | 8 / 11 | 3 / 11 | 50 min |
+
+Both with-skill runs missed the same two things: sections were screenshotted in a batch after the build instead of one at a time, and a second library found in memory was read but never named. The Opus run also reported a text-style binding that the final dump did not show. All three went back into the skill as v0.2: a hard screenshot-before-next-section step, a "candidates not adopted" table in the brief template, and a read-back rule for every claimed binding. The Opus reviewers caught a fabricated "trusted by" claim and a missed Pricing design before delivery, which is the loop doing its job; a provenance question was added to the vision brief so that catch is guaranteed rather than lucky.
 
 ## What this eval does not test
 

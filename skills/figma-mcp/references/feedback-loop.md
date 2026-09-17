@@ -8,6 +8,20 @@ An agent verifying its own work compares the output to the mental image that pro
 
 Reviewers never edit. They return findings; the core agent decides and fixes. A reviewer that returns an empty table without listing the tools it called has not reviewed, and the loop has not passed.
 
+## Which model runs which reviewer
+
+Reviewers that diff and measure can run on a cheaper model; reviewers that judge stay on the strong one. The findings format and the stop rule are the same either way, and the orchestrator reopens every cited node before acting on a cheap model's row.
+
+| Reviewer | Model | Why |
+| --- | --- | --- |
+| Brief check | strong | One short run; questions 2 and 5 are judgment against the request |
+| Coverage auditor | cheap | A ledger diff against a metadata tree |
+| Fidelity, script half per section | cheap | Runs the five checks in designing-in-figma.md and returns offender lists with values; the orchestrator grades them |
+| Fidelity, numbers against source, per section and on the finished page | strong | Judges which differences the user would notice first |
+| Vision | strong | Taste against the brief and the request |
+
+Pass the model in the harness's own way (a `model` parameter on the Agent tool, a sub-agent definition) and record which model ran each reviewer in the report.
+
 ## Filling the briefs
 
 The briefs below are the whole message the sub-agent receives, so everything in angle brackets is filled by the core agent from its own session before sending:
@@ -15,10 +29,12 @@ The briefs below are the whole message the sub-agent receives, so everything in 
 - `<TOOL NAMES>`: the exact deferred tool names the core agent resolved, comma-separated, including `get_figma_skill` on the remote server and the harness's browser tools when a website is involved. Sub-agents start with these deferred and will otherwise report that they have no Figma access.
 - `<SKILL LOADING>`: either "run `/figma-use`" when the Figma plugin is installed, or "read `skill://figma/figma-use/SKILL.md` with `get_figma_skill`" on the remote server. Same for `figma-design-to-code`.
 - Absolute paths to the brief, the coverage ledger and this skill's `references/` directory.
-- The mode, the file key, the target node ids, the page list, the reference (if any) and the grounding rung claimed, and the user's request verbatim with any answers they gave.
+- The mode, the file key, the target node ids, the page list, the reference (if any) and the grounding rung claimed. The user's request verbatim, with any answers they gave.
 - For design to output: the run command, port, route, and how the state is reached (the user logged in, fixture data, flags). For an audit: the build URL, route, state and frame width. For input to design: the created node ids.
 - On a re-run: the previous findings table.
 - The brief check reads files only and needs no tool slot.
+- On a cheap model, append: "Return node ids and the values you read beside the source values; do not summarise beyond the table. Grade severity only by the definitions given; if unsure, write MEDIUM and say why."
+- Every tool-using brief ends with: "If a node is missing or a call fails twice, stop and report what failed instead of improvising."
 
 ## The briefs
 
@@ -103,7 +119,8 @@ HIGH contradicts the source or the request in a way the user would notice
 first; MEDIUM is a measurable miss on a second look; LOW is polish. A
 preference with no source is not a finding. Under the table, list the tools
 you called. If everything was covered, say "No coverage findings" and still
-list what you checked.
+list what you checked. If a node is missing or a call fails twice, stop and
+report what failed instead of improvising.
 ```
 
 ### Fidelity reviewer
@@ -149,16 +166,20 @@ Do this:
    never upscales). Capture at 2x where the browser tool allows and say when
    you compared at 1x. The diff locates a difference; the measured values
    decide it. Report concentrated differences, not a percentage.
-4. Apply the measurable rules in design-principles.md that the brief adopts:
-   gaps at 2x between groups, concentric radii, line-height by role,
-   tracking by size, measure ≤ 75 characters, contrast floors.
+4. Run every row of the "Measurable checks" table in design-principles.md
+   that the brief adopts, citing the canvas property named in the row beside
+   the observed value.
+5. Read back every binding the builder claims (text styles, variables) from
+   the final state, not from the ledger; a claimed binding the dump does not
+   show is a HIGH finding.
 
 Return one table, most severe first, one row per root cause:
 | Severity | Location | Source says | Output shows | Fix |
 Every row carries the source value and the observed value. "Looks off" is
 not a finding. HIGH contradicts the source in a way the user would notice
 first; MEDIUM is a measurable miss on a second look; LOW is polish. Under
-the table, list the tools you called.
+the table, list the tools you called. If a node is missing or a call fails twice, stop and
+report what failed instead of improvising.
 ```
 
 ### Vision reviewer
@@ -194,13 +215,20 @@ Answer, with evidence from what you can see:
    for? Quote the sentence of the request that is least served.
 5. What would a senior designer change first, and does the brief support
    that change? If not, mark it as a preference and put it last.
+6. Walk the "rules that need judgment" list in design-principles.md: controls
+   distinct from content, voice and copy, hidden-content cues and clipping,
+   and the RTL mirror where the product ships to RTL locales. Cite the rule.
+7. Provenance: every claim, customer name, number and label on the frame
+   traces to one of the inputs or is a named placeholder. A line the sources
+   do not contain is a HIGH finding, whatever it says.
 
 Return one table, most severe first:
 | Severity | Location | Source says | Output shows | Fix |
 Location is a screenshot region or node id; "Source says" cites the brief or
 the user's sentence. HIGH contradicts the brief or the request in a way the
 user would notice first; MEDIUM is a measurable miss on a second look; LOW is
-polish. Then at most five lines of narrative, and the tools you called.
+polish. Then at most five lines of narrative, and the tools you called. If a node is missing or a call fails twice, stop and
+report what failed instead of improvising.
 ```
 
 ## Cadence and stop rule
@@ -221,6 +249,6 @@ A pass with nothing above `LOW` ends the loop. After a fix, the core agent re-ru
 - **Workflow orchestration the user opted into**: a pipeline of build-section then review-section per unit, verifying each as soon as its build completes.
 - **No sub-agent tool in the session at all**: write the brief, ledger and screenshots to disk, finish the work, then review as a separate pass that re-reads them cold. Say in the report that the loop did not run, because a self-review is weaker and the reader should know. Cost is not a reason to take this path when the tool exists.
 
-## Budget
+## Reviewer budget
 
 Three reviewers at three moments for three rounds is the ceiling, not the plan. A single-section change needs the fidelity reviewer once. A grounding-only task needs the brief check and vision once. An audit needs fidelity once, on the units in question. Scale the loop to the blast radius of the work, and say what you ran.

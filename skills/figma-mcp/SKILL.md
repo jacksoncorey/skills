@@ -28,17 +28,19 @@ Mixed requests ground once and then run both. Whatever the mode, the phases run 
 Establish the reference frame in this priority order and record which rung you landed on:
 
 1. A design system or library the user linked or named.
-2. A reference design or file the user pointed at. A reference from another brand settles layout, density and mood only. Its tokens, fonts, colors, imagery and copy never cross over; those come from rungs 1, 3 or 4 for the product the work is for. Its foundation and token pages are listed, never read.
+2. A reference design or file the user pointed at. A reference from another brand settles layout, density and mood only. Its tokens, fonts, colors, imagery and copy never cross over; those come from rungs 1, 3 or 4 for the product the work is for. Its foundation and token pages are listed, never read. Copy comes from the product's own sources or is a named placeholder; the skill never invents a claim.
 3. The public website of the product or brand the work is for, measured with the probes in [grounding.md](references/grounding.md).
 4. Existing screens in the same Figma file, which carry the file's conventions.
 5. Something found by searching: auto-memory and project memory, `CLAUDE.md`, `DESIGN.md`, token and theme files, Code Connect files, figma.com URLs in project docs, every page of `get_libraries`.
 6. Nothing. Say so, and design from the principles below.
 
-For design to output the codebase items of rung 5 always run, because they fill the target column.
+**Never adopt a found system without checking.** Rung 5 is a search result, not a decision. Name every candidate the search turned up in the brief, including the ones you did not adopt and why they lost, so the user can overrule the choice. The adopt rule and the one-line question are in [grounding.md](references/grounding.md). The short form: a found system is used unasked only when it is named for the product the task is for.
 
-**Never adopt a found system without checking.** Rung 5 is a search result, not a decision. Name every candidate the search turned up in the brief, including the ones you did not adopt and why they lost, so the user can overrule the choice. The adopt rule and the one-line question are in [grounding.md](references/grounding.md). The short form: a found system is used unasked only when it is named for the product the task is for. Keep doing everything that does not depend on the answer.
+**Write the brief.** Grounding ends with a design brief on disk: an aesthetic paragraph and atomic tables, each row citing where it was seen or saying `unknown`. For design to output the target token sits beside each source value. Template in [grounding.md](references/grounding.md). The brief also lists every candidate system the search found and did not adopt, with the reason. Location rule and template in [grounding.md](references/grounding.md); every reviewer gets the absolute paths.
 
-**Write the brief.** Grounding ends with a design brief on disk: an aesthetic paragraph and atomic tables, each row citing where it was seen or saying `unknown`. For design to output the target token sits beside each source value. Template in [grounding.md](references/grounding.md). The brief and the coverage ledger live in the session scratchpad, or a dated scratch folder if there is none, never inside a code repo. Every reviewer gets their absolute paths.
+## Check access before the long loop
+
+After grounding and before the first write or reviewer, run the preflight in [preflight-and-budget.md](references/preflight-and-budget.md) and present it as a card with the plan and an estimated cost. For input to design, stop at the card. Pre-authorisation (an eval harness, a "don't ask, just build", a `/loop` charter that lists its assumptions) lifts that stop. It does not lift a failed row the charter never named or an open question spanning sections. Over 20 write calls is always a question. Every assumption goes at the top of the report. For design to output and audit, the card is informational: show it and continue.
 
 ## Read the file like an inspector, not a viewer
 
@@ -47,10 +49,10 @@ A **focus unit** is a node a designer would name: the nav, the hero, one card, t
 1. Orient with `get_metadata`: the page list, then the tree for the pages in scope, to cut the page into focus units. Also list the linked node's sibling frames at depth one; frames named for the same screen (tabs, states, breakpoints) are in scope unless the user says otherwise.
 2. Load `figma-design-to-code`, then call `get_design_context` once per focus unit. Its G1 is passed by the set of per-unit calls. For design to output, G2 to G4 are passed by the brief's target columns, G5 becomes a fidelity-reviewer row, and you emit its three gate lines. In other modes only G1 applies, and you say so once.
 3. `get_variable_defs` on each unit for the tokens it binds.
-4. Screenshots per unit. On the remote server the response is a URL, so download it before you look. Set `maxDimension` to at least the node's native long edge; the tool downscales to fit and never upscales. Capture from the browser at 2x where the tooling allows, and say when a comparison was made at 1x.
+4. Screenshots per unit. The download and size rules are in [node-inspection.md](references/node-inspection.md).
 5. `use_figma` read-only scripts for what those tools hide. Scripts and the full property checklist are in [node-inspection.md](references/node-inspection.md).
 
-A unit counts as **inspected** only when the ledger names `get_design_context` or a `use_figma` dump for it. Metadata and a screenshot alone mark it as seen, and seen is a coverage finding. A ledger row is `| node id | unit name | tools that inspected it | what was noted |`.
+A unit counts as **inspected** only when the ledger names `get_design_context` or a `use_figma` dump for it. Metadata and a screenshot alone mark it as seen, and seen is a coverage finding.
 
 **Which pages.** Always the linked page, and every page of the product's own file named for foundations, tokens, styles, components or a design system. Skipping one of those is never acceptable. Pages named archive, old, WIP or explorations are listed, not read. Everything else gets metadata at depth one to decide. Read pages in parallel, one call per page, and say which were read and which were not.
 
@@ -60,13 +62,13 @@ A unit counts as **inspected** only when the ledger names `get_design_context` o
 
 ## Design in Figma the way a designer would
 
-The build sequence is `figma-generate-design` Steps 3 to 5 with `figma-use` Section 6's placeholder shimmer. Follow it there, not here. This section adds what a designer does that the sequence does not say, detailed in [designing-in-figma.md](references/designing-in-figma.md).
+The build sequence is `figma-generate-design` Steps 3 to 5 with `figma-use` Section 6's placeholder shimmer. Follow it there, not here, with one rule this skill tightens: section N+1 is not started until the screenshot of section N has been taken by id and looked at. Both eval runs batched the screenshots and built seven sections on top of an empty hero. The starting structure is the source's structure: add a section only when the request or a source calls for it, and say so in the report. This section adds what a designer does that the sequence does not say, detailed in [designing-in-figma.md](references/designing-in-figma.md).
 
 **Grid first.** Put a column grid on the wrapper before placing anything. 12 columns at desktop widths, 6 at tablet and below, and a 4-column mobile grid only where the file already uses one. Margins and gutters come from the brief or the file's own grid. Content sits on column edges and the on-grid script proves it.
 
 **Name everything with the vocabulary of the product.** Never `Frame 427`. Rename in the call that creates the node. Group the work in a Figma section named for the flow.
 
-**Hierarchy from the ramp.** Sizes, weights, leading and tracking come from the brief and are set explicitly, never left to `AUTO`. The canvas values and the kerning rule are in [designing-in-figma.md](references/designing-in-figma.md). If the brand family is not available in Figma, pick the nearest available family and record it as an accepted exception in the brief and the report. Never fall back to Inter unasked.
+**Hierarchy from the ramp.** Sizes, weights, leading and tracking come from the brief and are set explicitly, never left to `AUTO`. The canvas values and the kerning rule are in [designing-in-figma.md](references/designing-in-figma.md). A brand family Figma cannot load becomes the nearest available family, recorded as an accepted exception, never Inter unasked.
 
 **No library, no excuse.** When the target file has no library, `figma-generate-design`'s published-system prerequisite is overridden. Create local variables and then text styles from the brief's atomic tables before the wrapper, following the variable and style steps of `figma-generate-library`. Bind to those.
 
@@ -74,21 +76,23 @@ The build sequence is `figma-generate-design` Steps 3 to 5 with `figma-use` Sect
 
 ## Design principles that survive the canvas
 
-The measurable subset of [design-principles.md](references/design-principles.md), which restates Jakub Krehel's `better-*` rules for the canvas with attribution. The fidelity reviewer checks these; the vision reviewer checks the ones that need judgment.
+The load-bearing subset of [design-principles.md](references/design-principles.md), which restates Jakub Krehel's `better-*` rules for the canvas with attribution and ends by splitting the checks between the two reviewers. The fidelity reviewer runs those; the vision reviewer takes the rules that need judgment.
 
-- **Group with space, not lines.** The gap between groups is at least twice the gap within one.
-- **Align to shared edges,** and order by importance: the most important content near the top and the leading edge, one primary action per view.
-- **Controls look like controls.** A background shape, a border, or a consistent placement zone.
-- **Concentric radius.** Outer radius equals inner radius plus the padding between them.
-- **Shadows for elevation, borders for structure.** A divider stays a border; a border that only creates depth becomes a layered shadow.
-- **A type scale, few weights, tabular numbers on anything that changes.** Body 16, UI text 14, captions 13, rarely below 12. Contrast 4.5:1 for text and 3:1 for large text.
-- **Breathing room between targets.** 12 between bordered controls, 24 around borderless ones, 44 by 44 hit areas on touch.
-- **Image outlines** at 10 percent black, inset, on every photo.
-- **Verb-first buttons, destination-describing links, one vocabulary per flow.**
+- **Group with space, not lines.** The gap between groups is at least 2x the gap within one: 8 inside, 16 or more between. A separator line is the last resort and stays hairline and low contrast.
+- **Order by importance, one primary action per view.** The most important content sits near the top and the leading edge. One filled action per frame, peers neutral, secondaries behind a menu past three.
+- **Controls look like controls.** A background shape, a border, an underline, or a consistent placement zone; a static badge never borrows the button shape.
+- **Hit areas and breathing room.** 44 by 44 on touch, 40 on desktop, 24 the hard floor; 12 between bordered controls, 24 around borderless ones; two targets never overlap.
+- **Concentric radius.** Outer radius equals inner radius plus the padding between them; above 24 of padding the layers are separate surfaces.
+- **Shadows for elevation, borders for structure, outlines on images.** A divider stays a border. A depth-only border becomes three DROP_SHADOW layers (x/y/blur/spread): 0/0/0/1 at 6%, 0/1/2/-1 at 6%, 0/2/4/0 at 4%, or one white ring at 8% in dark. Every photo gets a 1 px inside stroke at 10 percent pure black, pure white in dark.
+- **Type by role, never a one-off.** Sizes come from a role-named scale: body 16, UI text 14, captions 13, rarely below 12, weight 400 or heavier below 18. Display and title take 110% leading, headings 110 to 120, body 150 to 160, and 140 at minimum on three or more lines. Tracking is -2% on display and +5% on small uppercase labels. Measure 60 to 75 characters, tabular numbers on anything that changes.
+- **Contrast is measured, not eyeballed.** Foreground against the background it actually sits on: 4.5:1 under 24 px (18.5 bold), 3:1 above and for UI components. Fix by lightness first, then remeasure, and report before repainting.
+- **Tokens in their role.** A frame binds semantic variables only, never a primitive directly. One colour has one meaning, and the accent hue appears only on interactive or selected nodes.
+- **Motion has exact values.** Enter y 12 to 0 over 300 ms, exit y -12 over 150 ms, both ease-out, stagger 100 ms only on infrequent entrances. Press scales to 0.96. High-frequency feedback takes 150 ms or less, and every animated state also has a static cue.
+- **Verb-first buttons, destination-describing links, one vocabulary per flow, sentence case,** errors that say how to fix beside the field that failed.
 
 ## Review with eyes that did not do the work
 
-Review is done by sub-agents with fresh context, briefed from the files on disk, with tool access to re-query Figma and the browser themselves. The briefs in [feedback-loop.md](references/feedback-loop.md) are self-contained; fill every angle bracket from the session before sending. Reviewers never edit. A preference with no source behind it is not a finding. A reviewer that returns an empty table without naming the tools it called has not reviewed.
+Review is done by sub-agents with fresh context, briefed from the files on disk, with tool access to re-query Figma and the browser themselves. The briefs in [feedback-loop.md](references/feedback-loop.md) are self-contained; fill every angle bracket from the session before sending. Reviewers never edit. A preference with no source behind it is not a finding.
 
 | Reviewer | Reads | Asks |
 | --- | --- | --- |
@@ -97,7 +101,9 @@ Review is done by sub-agents with fresh context, briefed from the files on disk,
 | Fidelity reviewer | The brief's atomic layer, the output, node ids | Where does the output disagree with the source on a number, a token, a font, a name, a grid position |
 | Vision reviewer | The brief's aesthetic layer, the user's own words, screenshots | Would the person who asked recognise it, and what would a senior designer change first |
 
-Cadence, stop rule, budget and harness mechanisms are in [feedback-loop.md](references/feedback-loop.md). The short form: brief check after grounding. Fidelity after each section for input to design, and once on the finished page for design to output. All three before the final report. An audit needs fidelity once. Nothing above LOW ends the loop. After a fix, re-run the same reviewer on the fixed items with the previous table attached; three rounds per unit, then the user. Scale it to the blast radius and say what you ran. Self-review from disk only when the session has no sub-agent tool at all, and the report then says the loop did not run.
+Spend the strong model where it judges and delegate what returns evidence. Nothing a cheaper model reports is acted on before the orchestrator reopens the cited node. The split, the per-mode budget and the calls that buy nothing are in [preflight-and-budget.md](references/preflight-and-budget.md).
+
+Cadence, stop rule, budget and harness mechanisms are in [feedback-loop.md](references/feedback-loop.md). Nothing above LOW ends the loop. After a fix, re-run the same reviewer on the fixed items with the previous table attached; three rounds per unit, then the user.
 
 ## Before you finish
 
@@ -107,6 +113,11 @@ Cadence, stop rule, budget and harness mechanisms are in [feedback-loop.md](refe
 | Font family loaded without error but wrong for the product | Assert against `getStyledTextSegments` and the brief |
 | Competitor's token pages read into the brief | A cross-brand reference's foundations are listed, never read |
 | Brand font unavailable in Figma, Inter loaded silently | Nearest family, recorded as an accepted exception |
+| Sixty write calls and six strong-model reviewers for one page | Preflight card first; cheap models for listings, dumps, captures and the coverage diff; one screenshot per finished section |
+| Built for an hour before the user saw the plan | Preflight card and brief, then ask, unless the run was pre-authorised |
+| Seven sections built before the first one was looked at | Screenshot section N by id before starting N+1 |
+| Report says a style is bound; the final dump says it is not | Read back after the last write; bind text styles last |
+| A "trusted by" line or a feature claim no source contains | Copy from the sources or a named placeholder; the vision reviewer checks provenance |
 
 ## Reporting
 
@@ -118,5 +129,7 @@ The final message carries, in this order:
 4. The findings resolved through the loop, grouped by reviewer.
 5. Accepted exceptions, each named and justified.
 6. What could not be verified, and why.
+
+Every claim of a binding, a check or a count comes from a read-back after the last write, never from the write call that set it.
 
 For an audit, the findings table leads and the rest follows.
